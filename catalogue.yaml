@@ -22,6 +22,6 @@
   - name: unarchive the application 
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
-      destination: /app
-      
+      dest: /app
+
   
