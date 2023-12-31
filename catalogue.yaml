@@ -4,34 +4,42 @@
   tasks:
   - name: need to disable the current version of nodejs and enable nodejs eighteen
     ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y #used command module due to lack of module for enabel perticular package
+
   - name: Install nodejs package
     ansible.builtin.package:
       name: nodejs
       state: present
+
   - name: Need to create roboshop user
     ansible.builtin.user:
       name: roboshop
+
   - name: create directory
     ansible.builtin.file:
         path: /app
         state: directory
+
   - name: Need to download code which is in URL
     ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
         dest: /tmp
+
   - name: unarchive the application 
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
+
   - name: Need to install dependencies
     ansible.builtin.command: npm install
     args:
       chdir: /app
+
   - name: Need to copy catalogue service file
     ansible.builtin.copy:
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service  
+
   - name: Need to do systemd reload
     ansible.builtin.systemd_service: 
       daemon_reload: true
@@ -41,9 +49,23 @@
     ansible.builtin.copy:
       src: mongodb.repo
       dest: /etc/yum.repos.d/mongodb.repo
+
   - name: Install mongodb client
     ansible.builtin.package:
       name: mongodb-org-shell
       state: present
+
+  - name: check the product count in mongodb
+    ansible.builtin.command: mongo --host mongodb.devopsv.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.prodcounts.count()'
+    register: product_count # output got from above command need to register in product_count variable
+
+  - name: print the product count
+    ansible.builtin.debug:
+      msg: "Product_count: {{product_count}}"
+      
+  - name: load catalogue data when count not equal to zero
+    ansible.builtin.command: mongo --host mongodb.devopsv.online < /app/schema/catalogue.js
+    when: product_count.stdout != 0  
+  
   
   
