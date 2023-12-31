@@ -4,7 +4,8 @@
   tasks:
   - name: need to disable the current version of nodejs and enable nodejs eighteen
     ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y #used command module due to lack of module for enabel perticular package
-  - name: ansible.builtin.package:
+  - name: Install nodejs package
+    ansible.builtin.package:
       name: nodejs
       state: present
   - name: Need to create roboshop user
