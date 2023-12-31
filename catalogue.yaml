@@ -8,4 +8,16 @@
     ansible.builtin.package:
       name: nodejs
       state: present
+  - name: Need to create roboshop user
+    ansible.builtin.user:
+      name: roboshop
+  - name: create directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+  - name: Need to download code which is in URL
+      ansible.builtin.get_URL
+        URL: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        path: /tmp
+    
   
