@@ -24,6 +24,25 @@
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
+  - name: Need to install dependencies
+    ansible.builtin.command: npm install
+    args:
+      chdir: /app
+  - name: Need to copy catalogue service file
+    ansible.builtin.copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service
+  - name: systemd reload
+    ansible.builtin.systemd-service: 
+      daemon_reload: true
+     #start the service after the data is loaded.
+
+  - name: copy mongodb repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.ropos.d/mongodb.repo
+  
       
+
 
   
