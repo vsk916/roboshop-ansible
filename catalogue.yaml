@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: need to disable the current version of nodejs and enable nodejs 18
-    ansible.builtin.command: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y #used command module due to lack of module for enabel perticular package
+    ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y #used command module due to lack of module for enabel perticular package
   - name:
     ansible.builtin.package:
       name: nodejs
