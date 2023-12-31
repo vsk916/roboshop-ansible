@@ -1,5 +1,5 @@
 - name: catalogue
-  hosts: catalogue
+  hosts: web
   become: yes
   tasks:
   - name: need to disable the current version of nodejs and enable nodejs eighteen
@@ -41,8 +41,4 @@
     ansible.builtin.copy:
       src: mongodb.repo
       dest: /etc/yum.ropos.d/mongodb.repo  
-  
-      
-
-
   
