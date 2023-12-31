@@ -1,5 +1,5 @@
 - name: setup mongodb server
-  hosts: mysql
+  hosts: shipping
   become: yes
   tasks:
   - name: copy mongodb repo file
