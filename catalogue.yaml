@@ -33,7 +33,7 @@
       src: catalogue.service
       dest: /etc/systemd/system/catalogue.service  #/etc/systemd/system/catalogue.service
   - name: Need to do systemd reload
-    ansible.builtin.systemd-service: 
+    ansible.builtin.systemd_service: 
       daemon_reload: true
      #start the service after the data is loaded.
 
