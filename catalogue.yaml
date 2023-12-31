@@ -1,5 +1,5 @@
 - name: catalogue
-  hosts: web
+  hosts: catalogue
   become: yes
   tasks:
   - name: need to disable the current version of nodejs and enable nodejs eighteen
