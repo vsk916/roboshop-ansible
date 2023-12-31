@@ -13,7 +13,7 @@
   - name: start and enable service
     ansible.builtin.service:
       name: mongod
-      state: present
+      state: started
       enabled: yes
   - name: giving remote connections
     ansible.builtin.replace:
