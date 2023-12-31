@@ -31,8 +31,8 @@
   - name: Need to copy catalogue service file
     ansible.builtin.copy:
       src: catalogue.service
-      dest: /etc/systemd/system/catalogue.service
-  - name: systemd reload
+      dest: /etc/systemd/system/catalogue.service  #/etc/systemd/system/catalogue.service
+  - name: Need to do systemd reload
     ansible.builtin.systemd-service: 
       daemon_reload: true
      #start the service after the data is loaded.
