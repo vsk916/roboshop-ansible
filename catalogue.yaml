@@ -31,7 +31,7 @@
   - name: Need to copy catalogue service file
     ansible.builtin.copy:
       src: catalogue.service
-      dest: /etc/systemd/system/catalogue.service  #/etc/systemd/system/catalogue.service
+      dest: /etc/systemd/system/catalogue.service  
   - name: Need to do systemd reload
     ansible.builtin.systemd_service: 
       daemon_reload: true
@@ -40,7 +40,7 @@
   - name: copy mongodb repo
     ansible.builtin.copy:
       src: mongodb.repo
-      dest: /etc/yum.ropos.d/mongodb.repo
+      dest: /etc/yum.ropos.d/mongodb.repo  
   
       
 
