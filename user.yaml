@@ -15,7 +15,7 @@
       name: roboshop
 
   - name: create directory
-    ansibl.builtin.file:
+    ansible.builtin.file:
       path: /app
       state: directory
   
@@ -41,8 +41,9 @@
       dest: /etc/systemd/system/user.service
   
   - name: Reload the systemd daemon
-    ansible.builtin.system_daemon:
+    ansible.builtin.systemd_daemon:
       daemon_reload: true
+
   - name: enable and restart the service
     ansible.builin.service:
       name: user
@@ -58,7 +59,7 @@
     ansible.builtin.package:
       name: mongodb-org-shell
       state: present
-      
+
   - name: load user schema
     ansible.builtin.command: mongo --host mongodb.devopsv.online </app/schema/user.js
 
