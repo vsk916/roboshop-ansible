@@ -1,0 +1,73 @@
+- name: user module need to update
+  hosts: user
+  become: yes
+  tasks:
+  - name: current version of nodejs need to disable and enable 18 nodejs
+    ansible.builtin.command: dnf module disable nodejs -y; dnf module enable nodejs:18 -y;
+
+  - name: install nodejs
+    ansible.builtin.package:
+      name: nodejs
+      state: present
+
+  - name: create roboshop user
+    ansible.builtin.user:
+      name: roboshop
+
+  - name: create directory
+    ansibl.builtin.file:
+      path: /app
+      state: directory
+  
+  - name: Download the user application
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com
+      dest: /tmp
+
+  - name: change directory
+    ansible.builtin.command: npm install
+    args: 
+      chdir: /app
+  
+  - name: unarchieve the application file
+    ansible.builtin.unarchive:
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
+
+  - name: copy the user service file
+    ansible.builtin.copy:
+      src: user.service
+      dest: /etc/systemd/system/user.service
+  
+  - name: Reload the systemd daemon
+    ansible.builtin.system_daemon:
+      daemon_reload: true
+  - name: enable and restart the service
+    ansible.builin.service:
+      name: user
+      state: started
+      enabled: yes
+
+  - name: copy mongodb repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
+
+  - name: install mongodb client
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+      
+  - name: load user schema
+    ansible.builtin.command: mongo --host mongodb.devopsv.online </app/schema/user.js
+
+  
+  
+
+
+  
+  
+
+      
+     
