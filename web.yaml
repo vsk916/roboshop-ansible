@@ -1,0 +1,40 @@
+- name: configuring web component
+  host: web
+  become: yes
+  tasks:
+  - name: Install nginx
+    ansible.builtin.package:
+      name: nginx
+      state: present
+
+  - name: start and enable the nginx service
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
+
+  - name: Need to remove the default content
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: absent
+
+  - name: Download the frontend content
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /tmp
+
+  - name: extract the frontend content
+    ansible.builtin.unarchive:
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html
+      remote_src: yes
+
+  - name: Need to copy the reverse proxy content
+    ansible.builtin.copy:
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf
+
+  - name: Need to reload the nginix service
+    ansible.builtin.service:
+      name: nginx
+      state: reloaded
