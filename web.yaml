@@ -18,7 +18,7 @@
   #     path: /usr/share/nginx/html
   #     state: absent
 
-  -  name: need to create directory
+  -  name: Need to delete default files in html
      file: 
        path: /usr/share/nginx/html/{{item}}
        state: absent
