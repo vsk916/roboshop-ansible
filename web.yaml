@@ -24,11 +24,9 @@
        state: absent
      with_fileglob:
       - "/usr/share/nginx/html/*"
-     register: out
+   
 
-  - name: output message of all files
-    ansible.builtin.debug:
-      msg: "output of the files: {{out}}"
+
 
   # - name: Download the frontend content
   #   ansible.builtin.get_url:
