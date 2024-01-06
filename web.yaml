@@ -19,7 +19,8 @@
   #     state: absent
 
   -  name: Need to delete default files in html
-     file: path: "/usr/share/nginx/html/{{item}}"
+     file: 
+       path: "/usr/share/nginx/html/{{item}}"
      with_items:
       - /usr/share/nginx/html/*
      register: out
