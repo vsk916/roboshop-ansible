@@ -34,7 +34,7 @@
   - name: Need to copy the reverse proxy content
     ansible.builtin.copy:
       src: roboshop.conf
-      dest: /etc/nginx/default.d/roboshop.conf
+      dest: /etc/nginx/default.d
 
   - name: Need to reload the nginix service
     ansible.builtin.service:
