@@ -19,9 +19,11 @@
   #     state: absent
 
   -  name: need to create directory
-     ansible.builtin.file:
-      path: /usr/share/nginx/html/*
-      state: absent
+     file: 
+       path: /usr/share/nginx/html/{{item}}
+       state: absent
+     with_fileglob:
+      - /usr/share/nginx/html/*
 
   # - name: Download the frontend content
   #   ansible.builtin.get_url:
