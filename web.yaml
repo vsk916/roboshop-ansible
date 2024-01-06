@@ -21,6 +21,7 @@
   -  name: Need to delete default files in html
      file: 
        path: "/usr/share/nginx/html/{{item}}"
+       state: absent
      with_fileglob:
       - /usr/share/nginx/html/*
      register: out
