@@ -1,0 +1,25 @@
+- name: mysql component
+  hosts: mysql
+  become: yes
+  tasks:
+  - name: Disable the mysql module
+    ansible.built.shell: dnf module disable mysql -y
+  
+  - name: copy mysql repo file
+    ansible.builtin.copy:
+      src: mysql.repo
+      dest: /ect/yum.repos.d
+  
+  - name: Install the mysql server
+    ansible.builtin.package:
+      name: mysql-community-server
+      state: present
+  
+  - name: start and enable the mysql service
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+  
+  - name: Need to set root password
+    ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1
