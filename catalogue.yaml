@@ -64,7 +64,7 @@
       msg: "Product_count: {{product_count}}"
 
   - name: load catalogue data when count not equal to zero
-    ansible.builtin.command: mongo --host mongodb.devopsv.online < /app/schema/catalogue.js
+    ansible.builtin.shell: mongo --host mongodb.devopsv.online < /app/schema/catalogue.js
     when: product_count.stdout == "0"
     
   - name: start and enable service
