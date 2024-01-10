@@ -56,14 +56,14 @@
       state: present
 
   - name: check the product count in mongodb
-    ansible.builtin.command: mongo --host mongodb.devopsv.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.prodcounts.count()'
+    ansible.builtin.shell: mongo --host mongodb.devopsv.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.prodcounts.count()'
     register: product_count # output got from above command need to register in product_count variable
 
   - name: print the product count
     ansible.builtin.debug:
       msg: "Product_count: {{product_count}}"
 
-  - name: load catalogue data when count not equal to zero
+  - name: load catalogue data when count equal to zero
     ansible.builtin.shell: mongo --host mongodb.devopsv.online < /app/schema/catalogue.js
     when: product_count.stdout == "0"
     
