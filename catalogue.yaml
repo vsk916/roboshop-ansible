@@ -70,9 +70,9 @@
   - name: restart and enable service
     ansible.builtin.service:
       name: catalogue
-      state: restarted
+      state: reload
       enabled: yes
-      
+
       
   
   
