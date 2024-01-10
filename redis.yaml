@@ -10,7 +10,7 @@
       disable_gpg_check: true
   
   - name: Enable redis package six.two
-    ansible.builtin.command: dnf module enable redis: remi-6.2 -y
+    ansible.builtin.command: "dnf module enable redis: remi-6.2 -y"
   
   - name: Install redis
     ansible.builtin.package:
@@ -20,7 +20,7 @@
   - name: allow remote connections
     ansible.builtin.replace:
       path: /etc/redis/redis.conf
-      regexp: 127.0.o.1
+      regexp: 127.0.0.1
       replace: 0.0.0.0
   
   - name: Start and enable redis service
@@ -28,4 +28,3 @@
       name: redis
       state: started
       enabled: yes
-      

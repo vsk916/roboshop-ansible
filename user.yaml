@@ -60,12 +60,12 @@
       name: mongodb-org-shell
       state: present
   
-   - name: check the user count in user
+  - name: check the user count in user
     ansible.builtin.command: mongo --host mongodb.devopsv.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.users.count()'
     register: user_count # output got from above command need to register in user_count variable
 
   - name: print the user count
-    ansible.builtin.debug:`
+    ansible.builtin.debug:
       msg: "user_count: {{user_count}}"
 
   - name: load user data when count not equal to zero
