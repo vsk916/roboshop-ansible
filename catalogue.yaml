@@ -77,6 +77,9 @@
       name: catalogue
       state: restarted
       enabled: yes
+  - name: print the product count
+    ansible.builtin.debug:
+      msg: "Product_count: {{product_count.stdout}}"
 
       
   
