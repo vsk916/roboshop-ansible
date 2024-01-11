@@ -22,7 +22,7 @@
       dest: /tmp
   
   - name: Extract the application
-    anisbile.builtin.unarchive:
+    ansbile.builtin.unarchive:
       src: /tmp/dispatch.zip
       dest: /app
       remote_src: yes
