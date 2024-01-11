@@ -29,6 +29,8 @@
   
   - name: install dependencies
     ansible.builtin.command: go mod init dispatch; go get; go build;
+    args:
+      chdir: /app
 
   - name: copy the user service file
     ansible.builtin.copy:
