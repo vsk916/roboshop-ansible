@@ -25,7 +25,7 @@
       dest: /tmp
 
   - name: change directory
-    ansible.builtin.command: npm install
+    ansible.builtin.shell: npm install
     args: 
       chdir: /app
   
