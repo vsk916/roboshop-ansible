@@ -13,6 +13,7 @@
   - name: create roboshop user
     ansible.builtin.user:
       name: roboshop
+
   - name: delete /app directory
     ansible.builtin.file:
         path: /app
@@ -28,16 +29,16 @@
       url: https://roboshop-builds.s3.amazonaws.com/user.zip
       dest: /tmp
 
-  - name: Install dependencies
-    ansible.builtin.command: npm install
-    args: 
-      chdir: /app
-  
   - name: unarchieve the application file
     ansible.builtin.unarchive:
       src: /tmp/user.zip
       dest: /app
       remote_src: yes
+
+  - name: Install dependencies
+    ansible.builtin.command: npm install
+    args: 
+      chdir: /app
 
   - name: copy the user service file
     ansible.builtin.copy:
