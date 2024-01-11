@@ -3,7 +3,7 @@
   become: yes
   vars:
     mysql_password: RoboShop@1
-  taskes:
+  tasks:
   - name: install maven
     ansible.builtin.package:
       name: maven
