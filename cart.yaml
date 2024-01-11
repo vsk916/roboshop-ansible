@@ -3,7 +3,7 @@
   become: yes
   tasks: 
   - name: need to enable nodejs eighteen and disabel current version
-    ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nidejs:18 -y
+    ansible.builtin.shell: dnf module disable nodejs -y; dnf module enable nodejs:18 -y
   
   - name: Install the nodejs
     ansible.builtin.package:
