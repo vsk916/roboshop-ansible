@@ -75,13 +75,17 @@
 
   - name: load user data when count not equal to zero
     ansible.builtin.command: mongo --host mongodb.devopsv.online < /app/schema/user.js
-    # when: user_count.stdout == 0  
+    when: user_count.stdout == 0  
     
   - name: start and enable service
     ansible.builtin.service:
       name: user
       state: started
       enabled: yes
+
+  - name: print the user count
+    ansible.builtin.debug:
+      msg: "user_count: {{user_count.stdout}}"
   
 
   
