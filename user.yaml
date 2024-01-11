@@ -21,7 +21,7 @@
   
   - name: Download the user application
     ansible.builtin.get_url:
-      url: https://roboshop-builds.s3.amazonaws.com
+      url: https://roboshop-builds.s3.amazonaws.com/user.zip
       dest: /tmp
 
   - name: change directory
