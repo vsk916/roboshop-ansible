@@ -3,10 +3,10 @@
   become: yes
   tasks:
   - name: configure yum erlang /ect/yum.repos.d
-    ansible.builtin.shell:  curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+    ansible.builtin.shell:  curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
   - name: configure yum repos for rabbitmq
-    ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
+    ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
   - name: Install rabbitmq
     ansible.builtin.dnf:
