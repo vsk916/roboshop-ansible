@@ -24,8 +24,8 @@
       url: https://roboshop-builds.s3.amazonaws.com/user.zip
       dest: /tmp
 
-  - name: change directory
-    ansible.builtin.shell: npm install
+  - name: Install dependencies
+    ansible.builtin.command: npm install
     args: 
       chdir: /app
   
