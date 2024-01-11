@@ -41,7 +41,7 @@
       dest: /etc/systemd/system
   
   - name: reload the systemd service
-    ansible.builtin.systemd_servie:
+    ansible.builtin.systemd_service:
       daemon_reload: true
 
   - name: Enable and start the service
