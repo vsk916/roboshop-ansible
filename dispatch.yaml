@@ -13,7 +13,7 @@
 
   - name: create app directory
     ansible.builtin.file:
-     src: /app
+     path: /app
      state: directory
   
   - name: Download URL of application
